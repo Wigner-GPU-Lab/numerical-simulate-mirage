@@ -3,7 +3,7 @@
 #include "OdeSolverGsl.h"
 #include "RungeKuttaRayBending.h"
 #include "mathUtil.h"
-#include "CLI11.hpp"
+#include "CLI.hpp"
 #include <iostream>
 #include <fstream>
 #include <iomanip>

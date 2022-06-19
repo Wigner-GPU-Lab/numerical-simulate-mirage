@@ -5,3 +5,6 @@
 	path = stl_reader
 	url = https://github.com/sreiter/stl_reader.git
 
+[submodule "cli11"]
+	path = cli11
+	url = https://github.com/CLIUtils/CLI11.git

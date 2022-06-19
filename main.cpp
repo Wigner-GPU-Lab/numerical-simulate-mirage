@@ -1,5 +1,5 @@
 #include "simpleRaytracer.h"
-#include "CLI11.hpp"
+#include "CLI.hpp"
 #include <iostream>
 #include <thread>
 
