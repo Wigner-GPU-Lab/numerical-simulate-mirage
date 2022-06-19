@@ -52,4 +52,7 @@ and it prints 4 vectors with the names `d`, `x`, `crity`, `mirry`. Here
 
 so the plot `plot(x,d, x,crity, x,mirry)` looks like
 
-![2D plot](https://gitlab.wigner.hu/bamer.balazs/numerical-simulate-mirage/images/2dplot.png "2D plot")
+![2D plot][2dplot]
+
+
+[2dplot]: https://gitlab.wigner.hu/bamer.balazs/numerical-simulate-mirage/-/blob/main/images/2dplot.png "2D plot"
