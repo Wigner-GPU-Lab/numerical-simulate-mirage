@@ -63,7 +63,7 @@ _eikonal_ has some options, which affect the
 - simulated physics
 - simulated geometry like distances, Earth form and radius.
 
-The first two sorts of options have proven default values, so it is enough to deal with the geometry options. Here, when `--dir` is not specified, the critical ray angle is computed and used. Please refer the help for more information:
+The first two sorts of options have proven default values, so it is enough to deal with the physics and geometry options. Here, when `--dir` is not specified, the critical ray angle is computed and used. Please refer the help for more information:
 
 `./eikonal --help`
 
@@ -98,6 +98,34 @@ The rays are traced individually, with possible subsampling for each pixel to pr
 `./main --resolution 665 --subsample 3` produces this image:
 
 ![Rendered subsample 3][rendered-subsample3]
+
+As shown, by default no water is copied below the mirage. _main_ has these sorts of options:
+
+- differential equation solver algorithm
+- simulated physics
+- simulated geometry like distances, Earth form and radius.
+- rendering options including resolution, subsampling, marks and borders
+- file names to use for input and output
+
+The first sort of options have proven default values, so it is enough to deal with the rest. Please refer the help for more information:
+
+`./main --help`
+
+### Iterations
+
+We have provided an other bash script to let _main_ be used in an automated manner:
+
+`bash iterateMain.sh <start> <diff> <count> <parameterToIterate> [rest of params to be passed to main]`
+
+The script accepts 4 parameters:
+
+- start value
+- difference to add to the start value each time
+- iteration count
+- iterated parameter name, together with `--` like `--tempAmb`
+
+All other options will be appended as is to the called _main_ command line. Please do not specify output name, it will be `series<n>.png`
+
 
 [2dplot]: images/2dplot.png "2D plot"
 [rendered-subsample3]: images/rendered-subsample3.png "Rendered image using --subsample 3"
