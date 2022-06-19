@@ -3,7 +3,6 @@ if [[ "$#" -lt 4 ]]; then
   echo "Usage: bash iterateEikonal.sh <start> <diff> <count> <parameterToIterate> [rest of params to be passed to main]"
   echo "parameterToIterate <actual value> will be appended."
   echo "Output goes into iterated.txt."
-  echo "Do not specify --dir"
   exit
 fi
 i=0

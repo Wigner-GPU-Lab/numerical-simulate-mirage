@@ -1,6 +1,6 @@
 # Numerical mirage simulator
 
-This is a simple mirage simulator written in C++17. It uses the simplest possible 2D / 3D model. The Earth is either flat or round, both without any elevations. The ambient air temperature (above a transitional layer) is uniform and constant, the surface temperature is also constant. 
+This is a simple mirage simulator written in C++17. It uses the simplest possible 2D / 3D model. The Earth is either flat or round, both without any elevations. The ambient air temperature (above a transitional layer) is uniform and constant, the surface temperature is also constant. The simulation involves solving a differential equation, for which a Runge--Kutta method is used, implemented by GNU Scientific Library. TODO include the article when published.
 
 The 2D case is handled by the _eikonal_ command line application, which can be used to dump coordinates of ray segments.
 
@@ -14,14 +14,15 @@ Both simulators can handle various physical models:
 
 ## Installation
 
-Both apps have been developed for Linux, but some changes allow also Cygwin to be used. By default they compile only for Linux. I have developed them under Ubuntu 20.04. External library requirements are (development version required):
+Both apps have been developed for Linux, but some changes allow also Cygwin to be used. By default they compile only for Linux. We have developed them under Ubuntu 20.04. External library requirements are (development version required):
 
 - libpthread
 - libpng 1.6
 - Eigen3 3.3.7
+- GNU Scientific Library 2.5
 - png++
 
-A the first three usually can be installed using the package manager. png++ might be missing (like in Cygwin), so download it from [here](https://www.nongnu.org/pngpp/). Further libraries are needed, but I have included them as git submodules:
+A the first four usually can be installed using the package manager. png++ might be missing (like in Cygwin), so download it from [here](https://www.nongnu.org/pngpp/). Further libraries are needed, but we have included them as git submodules:
 
 - [CLIUtils/CLI11](https://github.com/CLIUtils/CLI11)
 - [hauptmech/eigen-initializer_list](https://github.com/hauptmech/eigen-initializer_list)
@@ -39,11 +40,11 @@ Steps 3 and 4 may need other directories to symlink to, for example when Eigen3 
 
 ## Drawing rays
 
-_eikonal_ dumps only ray segment coordinates, so an other tool is needed for visualization. I have developed it with Octave or Matlab in mind, because they are partially compatible and are easy to use. By default it only writes the apparent mirror line direction (degrees from horizontal). To get the coordinates, one needs to run it with this option:
+_eikonal_ dumps only ray segment coordinates, so an other tool is needed for visualization. We have developed it with Octave or Matlab in mind, because they are partially compatible and are easy to use. By default it only writes the apparent mirror line direction (degrees from horizontal). To get the coordinates, one needs to run it with this option:
 
 `./eikonal --silent false`
 
-and it prints 4 vectors with the names `d`, `x`, `crity`, `mirry`. Here
+and leaving everything else on default values, it prints 4 vectors with the names `d`, `x`, `crity`, `mirry`. Here
 
 - `x` is a set of common X coordinates for all other vectors holding Y coordinates.
 - `d` contains the Y coordinates of the Earth surface (if not flat, which is default).
@@ -54,7 +55,31 @@ so the plot `plot(x,d, x,crity, x,mirry)` looks like
 
 ![2D plot][2dplot]
 
-_eikonal_ has some options, which 
+_eikonal_ has some options, which affect the
+
+- differential equation solver algorithm
+- number of line segments
+- simulated geometry like distances, Earth form and radius.
+
+The first two sorts of options have proven default values, so it is enough to deal with the geometry options. Here, when `--dir` is not specified, the critical ray angle is computed and used. Please refer the help for more information:
+
+`./eikonal --help`
+
+### Iterations
+
+We have provided a bash script to let _eikonal_ be used in an automated manner:
+
+```rm iterated.txt
+bash iterateEikonal.sh <start> <diff> <count> <parameterToIterate> [rest of params to be passed to main]```
+
+The script accepts 4 parameters:
+- start value
+- difference to add to the start value each time
+- iteration count
+- iterated parameter name, together with `--` like `--tempAmb`
+
+All other options will be appended as is to the called _eikonal_ command line. Output goes into iterated.txt.
+
 
 
 [2dplot]: images/2dplot.png "2D plot"
