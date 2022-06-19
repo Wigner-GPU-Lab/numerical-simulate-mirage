@@ -1,10 +1,6 @@
 [submodule "eigen-initializer_list"]
 	path = eigen-initializer_list
 	url = https://github.com/hauptmech/eigen-initializer_list.git
-[submodule "stl_reader"]
-	path = stl_reader
-	url = https://github.com/sreiter/stl_reader.git
-
 [submodule "cli11"]
 	path = cli11
 	url = https://github.com/CLIUtils/CLI11.git

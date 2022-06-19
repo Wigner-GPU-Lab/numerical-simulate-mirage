@@ -10,7 +10,6 @@ add_definitions(-DEIGEN_MATRIX_PLUGIN="Matrix_initializer_list.h" -DEIGEN_ARRAY_
 INCLUDE_DIRECTORIES ( "cli11/include/CLI"
                       "eigen3"
                       "png++"
-                      "stl_reader"
                       "eigen-initializer_list/src" )
 ADD_LIBRARY (RungeKuttaRayBendingLib SHARED RungeKuttaRayBending.cpp mathUtil.cpp)
 target_link_libraries(RungeKuttaRayBendingLib quadmath png gsl pthread)
