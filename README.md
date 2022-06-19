@@ -54,5 +54,7 @@ so the plot `plot(x,d, x,crity, x,mirry)` looks like
 
 ![2D plot][2dplot]
 
+_eikonal_ has some options, which 
 
-[2dplot]: https://gitlab.wigner.hu/bamer.balazs/numerical-simulate-mirage/-/blob/main/images/2dplot.png "2D plot"
+
+[2dplot]: images/2dplot.png "2D plot"
