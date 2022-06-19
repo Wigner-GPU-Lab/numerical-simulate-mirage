@@ -38,6 +38,7 @@ Steps to download and compile:
 
 Steps 3 and 4 may need other directories to symlink to, for example when Eigen3 resides in an other system directory or png++ have been downloaded somewhere in the home.
 
+
 ## Drawing rays
 
 _eikonal_ dumps only ray segment coordinates, so an other tool is needed for visualization. We have developed it with Octave or Matlab in mind, because they are partially compatible and are easy to use. By default it only writes the apparent mirror line direction (degrees from horizontal). To get the coordinates, one needs to run it with this option:
@@ -59,6 +60,7 @@ _eikonal_ has some options, which affect the
 
 - differential equation solver algorithm
 - number of line segments
+- simulated physics
 - simulated geometry like distances, Earth form and radius.
 
 The first two sorts of options have proven default values, so it is enough to deal with the geometry options. Here, when `--dir` is not specified, the critical ray angle is computed and used. Please refer the help for more information:
@@ -69,10 +71,13 @@ The first two sorts of options have proven default values, so it is enough to de
 
 We have provided a bash script to let _eikonal_ be used in an automated manner:
 
-```rm iterated.txt
-bash iterateEikonal.sh <start> <diff> <count> <parameterToIterate> [rest of params to be passed to main]```
+```bash
+rm iterated.txt
+bash iterateEikonal.sh <start> <diff> <count> <parameterToIterate> [rest of params to be passed to main]
+```
 
 The script accepts 4 parameters:
+
 - start value
 - difference to add to the start value each time
 - iteration count
@@ -81,5 +86,18 @@ The script accepts 4 parameters:
 All other options will be appended as is to the called _eikonal_ command line. Output goes into iterated.txt.
 
 
+## Rendering images
+
+_main_ can be used to render images. Again, it is a pure command line app which uses PNG images for input and output. It has two inputs:
+
+- the billboard contents, which defaults to be an RCA monoscope image.
+- the water to copy below the rendered image.
+
+The rays are traced individually, with possible subsampling for each pixel to produce better output. The invocation
+
+`./main --resolution 665 --subsample 3` produces this image:
+
+![Rendered subsample 3][rendered-subsample3]
 
 [2dplot]: images/2dplot.png "2D plot"
+[rendered-subsample3]: images/rendered-subsample3.png "Rendered image using --subsample 3"
